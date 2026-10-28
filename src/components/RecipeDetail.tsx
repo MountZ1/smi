@@ -2,8 +2,10 @@ import type { Recipe } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Navigate, Route, useNavigate } from "react-router";
 
 export function RecipeDetail({ recipe }: { recipe: Recipe }) {
+  const navigate = useNavigate();
   const stats = [
     { label: "Persiapan", value: formatMinutes(recipe.prepTimeMinutes) },
     { label: "Memasak", value: formatMinutes(recipe.cookTimeMinutes) },
@@ -50,7 +52,12 @@ export function RecipeDetail({ recipe }: { recipe: Recipe }) {
           {badges.length > 0 && (
             <div className="flex flex-wrap gap-1">
               {badges.map((badge) => (
-                <Badge key={badge} variant="secondary">
+                <Badge
+                  key={badge}
+                  variant="secondary"
+                  className="hover:cursor-pointer"
+                  onClick={() => navigate(`/auth/recipes/tag/${badge}`)}
+                >
                   {badge}
                 </Badge>
               ))}

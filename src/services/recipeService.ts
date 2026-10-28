@@ -31,3 +31,14 @@ export async function getRecipeById(id: number, signal?: AbortSignal): Promise<R
       : [],
   };
 }
+
+export async function getRecipesByTag(
+  tag: string,
+  params: ListParams,
+  signal?: AbortSignal,
+): Promise<Paginated<Recipe>> {
+  const data = await request(buildListPath(`recipes/tag/${encodeURIComponent(tag)}`, params), {
+    signal,
+  });
+  return parsePaginated(data, "recipes", isRecipe);
+}

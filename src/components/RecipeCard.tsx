@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import type { Recipe } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 export function RecipeCard({ recipe }: { recipe: Recipe }) {
   const totalMinutes = (recipe.prepTimeMinutes ?? 0) + (recipe.cookTimeMinutes ?? 0);
   const tags = recipe.tags?.slice(0, 3) ?? [];
+  const navigate = useNavigate();
 
   const meta = [
     recipe.cuisine,
@@ -39,7 +40,11 @@ export function RecipeCard({ recipe }: { recipe: Recipe }) {
           {tags.length > 0 && (
             <div className="flex flex-wrap gap-1">
               {tags.map((tag) => (
-                <Badge key={tag} variant="secondary">
+                <Badge
+                  key={tag}
+                  variant="secondary"
+                  onClick={() => navigate(`/recipes/tag/${tag}`)}
+                >
                   {tag}
                 </Badge>
               ))}

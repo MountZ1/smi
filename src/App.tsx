@@ -8,6 +8,7 @@ import { PostsPage } from "@/pages/PostsPage";
 import { RecipesPage } from "@/pages/RecipesPage";
 import { RecipeDetailPage } from "./pages/RecipeDetailPage";
 import { PostDetailPage } from "./pages/PostDetailPage";
+import { RecipesPageByTag } from "./pages/RecipesPageByTag";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
               <Route index element={<Navigate to="recipes" replace />} />
               <Route path="recipes" element={<RecipesPage />} />
               <Route path="recipes/:id" element={<RecipeDetailPage />} />
+              <Route path="recipes/tag/:tag" element={<RecipesPageByTag />} />
               <Route path="posts" element={<PostsPage />} />
               <Route path="posts/:id" element={<PostDetailPage />} />
             </Route>

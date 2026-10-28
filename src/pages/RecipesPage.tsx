@@ -1,6 +1,7 @@
 import { PaginatedList } from "@/components/PaginatedList";
 import { RecipeCard, RecipeCardSkeleton } from "@/components/RecipeCard";
 import { getRecipes } from "@/services/recipeService";
+import { useParams } from "react-router";
 
 export function RecipesPage() {
   return (
